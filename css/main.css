@@ -75,7 +75,7 @@ i {
   position: relative;
 }
 .page_logo {
-  display: block;
+  display: none;
   position: absolute; 
   width: 400px;
   left: 50%;
@@ -238,7 +238,6 @@ i {
   }
 }
 .slide_1 > p:nth-child(even) {
-  text-transform: uppercase;
   margin-bottom: -.5rem;
 }
 .slide_1 > p:nth-child(2),

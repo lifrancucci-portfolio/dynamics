@@ -4,6 +4,7 @@ function contentLoaded() {
 
   /************** GENERAL **************/
   const container = document.querySelector('.page-container');
+  const pageLogo = document.querySelector('.page_logo');
 
   // INTRO MENU
   // const menuArrow = document.querySelector('.menu__display-arrow');
@@ -22,9 +23,35 @@ function contentLoaded() {
   };
   menuDots.addEventListener('click', menuToggle);
 
+  // Lock scrolling until intro animations end
+  function disableScroll() {
+    // Get the current page scroll position
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+
+    // if any scroll is attempted, set this to the previous value
+    window.onscroll = function() {
+        window.scrollTo(scrollLeft, scrollTop);
+    };
+  }
+  // ENABLE SCROLL AND CLOSE MENU WHEN SCROLLING
+  function enableScroll() {
+    window.onscroll = function() {
+      if(menuList.classList.contains('active')) {
+        menuList.classList.remove('active');
+        menuDots.classList.remove('hidden');
+      }
+    };
+  }
+  enableScroll();
+
   /***************** INDEX *****************/
   if( container.id == 'main' ) 
   {
+    // Disable scroll until animation ends
+    disableScroll();
+
+    pageLogo.style.display='block';
     // On main page, animate page-iso and show page-logo
     const pageIso = document.getElementById('page-iso');
     pageIso.classList.add('animated');
@@ -32,29 +59,6 @@ function contentLoaded() {
     // On main page, animate menu arrow
     const menu = document.querySelector('.menu');
     menu.classList.add('animated');
-
-    // INTRO ANIMATIONS
-    // Lock scrolling until intro animations end
-    function disableScroll() {
-      // Get the current page scroll position
-      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-  
-      // if any scroll is attempted, set this to the previous value
-      window.onscroll = function() {
-          window.scrollTo(scrollLeft, scrollTop);
-      };
-    }
-    disableScroll();
-
-    function enableScroll() {
-      window.onscroll = function() {
-        if(menuList.classList.contains('active')) {
-          menuList.classList.remove('active');
-          menuDots.classList.remove('hidden');
-        }
-      };
-    }
 
     const introAnim = [];
 
@@ -115,26 +119,21 @@ function contentLoaded() {
       rootMargin: '-100px'
     });
   }
-
-  /************ TEAM/WORKAREAS ************/
-  if( container.id == 'team' || container.id == 'workareas') {
-    const pageLogo = document.querySelector('.page_logo');
-    pageLogo.style.display='none'
-  }
-
   /***************** TEAM *****************/
   if( container.id == 'team' ) 
   {
+
+    /* 
     // TEAM DIVIDER
-    /* Create container of n width */
+    // Create container of n width
     let divider = document.querySelectorAll('.team_member_divider');
     divider = Array.from(divider);
     console.log(divider);
 
-    /* For each divider on the page, fill it with '/' elements as long as they don't exceed the div's width */
+    // For each divider on the page, fill it with '/' elements as long as they don't exceed the div's width
     divider.forEach(el => {
 
-      /* Create a div to place inside the container and fill it with <span>/</span> */
+      // Create a div to place inside the container and fill it with <span>/</span>
       let dividerFilledContent = document.createElement('div');
       let contentFill = '<span>/</span>';
       dividerFilledContent.innerHTML = contentFill;
@@ -156,16 +155,16 @@ function contentLoaded() {
       }
 
       // DIVIDER ANIMATION
-      /* Create an Array from the contents of the div, then cicle through them adding and removing animation classes */
+      // Create an Array from the contents of the div, then cicle through them adding and removing animation classes
       let divAnimatedContent = Array.from(dividerFilledContent.children);
       // console.log(divAnimatedContent);
 
-      /* Set 2 indices and 2 endpoints for looping: 
-        i = from begining of array 
-        j = from the middle 
-        iEndPoint = middle of the array - 1;
-        jEndPoint = end of the array;
-      */
+      // Set 2 indices and 2 endpoints for looping: 
+      //  i = from begining of array 
+      //  j = from the middle 
+      //  iEndPoint = middle of the array - 1;
+      //  jEndPoint = end of the array;
+
       let i = 0;
       let j = parseInt(divAnimatedContent.length / 2);
       let iEndPoint = parseInt((divAnimatedContent.length / 2) - 1);
@@ -187,6 +186,7 @@ function contentLoaded() {
       animateDivider(j, divAnimatedContent.length);
 
     });
+    */
 
   }
   /*********** DIGITAL/SUSTAINABLE ***********/
