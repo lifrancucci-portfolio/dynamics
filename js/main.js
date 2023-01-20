@@ -1,7 +1,8 @@
 function contentLoaded() {
 
-  /************** GENERAL **************/
+  window.scrollTo(0,0);
 
+  /************** GENERAL **************/
   const container = document.querySelector('.page-container');
 
   // INTRO MENU
@@ -17,8 +18,8 @@ function contentLoaded() {
     else {
       menuList.classList.remove('active');
       menuDots.classList.remove('hidden');
-    };
-  }
+    }
+  };
   menuDots.addEventListener('click', menuToggle);
 
   /***************** INDEX *****************/
@@ -27,9 +28,6 @@ function contentLoaded() {
     // On main page, animate page-iso and show page-logo
     const pageIso = document.getElementById('page-iso');
     pageIso.classList.add('animated');
-
-    const pageLogo = document.querySelector('.page_logo');
-    pageLogo.style.display='block'
 
     // On main page, animate menu arrow
     const menu = document.querySelector('.menu');
@@ -116,6 +114,12 @@ function contentLoaded() {
     scrollTrigger('.text-enter', {
       rootMargin: '-100px'
     });
+  }
+
+  /************ TEAM/WORKAREAS ************/
+  if( container.id == 'team' || container.id == 'workareas') {
+    const pageLogo = document.querySelector('.page_logo');
+    pageLogo.style.display='none'
   }
 
   /***************** TEAM *****************/
