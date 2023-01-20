@@ -235,6 +235,10 @@ i {
     opacity: 1;
   }
 }
+.slide_1 > p:nth-child(even) {
+  text-transform: uppercase;
+  margin-bottom: -.5rem;
+}
 .slide_1 > p:nth-child(2),
 .slide_1 > p:nth-child(4) {
   font-size: 48px;
@@ -286,10 +290,17 @@ i {
 .title-section__title {
   text-align: center;
   font-size: 36px;
+  text-transform: uppercase;
 }
 .title-section__subtitle {
   font-size: 1.2rem;
   font-size: 24px;
+}
+.slide .col__title {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 36px;
+  margin-bottom: 1.5rem;
 }
 .slide_2 {
   height: 500px;
@@ -325,9 +336,9 @@ i {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 320px;
+  width: 400px;
   height: 550px;
-  margin-left: calc(50% - 160px);
+  margin-left: calc(50% - 200px);
 }
 .slide_3 {
   margin-bottom: 100px;
