@@ -1,6 +1,7 @@
 function contentLoaded() {
 
   /************** GENERAL **************/
+
   const container = document.querySelector('.page-container');
 
   // INTRO MENU
@@ -20,14 +21,6 @@ function contentLoaded() {
   }
   menuDots.addEventListener('click', menuToggle);
 
-  // If scroll with menu open, close menu
-  window.onscroll = function(e) {
-    if(menuList.classList.contains('active')) {
-      menuList.classList.remove('active');
-      menuDots.classList.remove('hidden');
-    }
-  }
-
   /***************** INDEX *****************/
   if( container.id == 'main' ) 
   {
@@ -44,7 +37,6 @@ function contentLoaded() {
 
     // INTRO ANIMATIONS
     // Lock scrolling until intro animations end
-    // container.classList.add('prevent-scrolling');
     function disableScroll() {
       // Get the current page scroll position
       scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -58,7 +50,12 @@ function contentLoaded() {
     disableScroll();
 
     function enableScroll() {
-      window.onscroll = function() {};
+      window.onscroll = function() {
+        if(menuList.classList.contains('active')) {
+          menuList.classList.remove('active');
+          menuDots.classList.remove('hidden');
+        }
+      };
     }
 
     const introAnim = [];
@@ -117,18 +114,14 @@ function contentLoaded() {
       observer.observe(el);
     }
     scrollTrigger('.text-enter', {
-      rootMargin: '-50px'
+      rootMargin: '-100px'
     });
-
   }
+
   /***************** TEAM *****************/
   if( container.id == 'team' ) 
   {
-    // If on team page, use static iso
-    const pageIso = document.getElementById('page-iso');
-    pageIso.classList.add('static')
-
-    // TEST DIVIDER
+    // TEAM DIVIDER
     /* Create container of n width */
     let divider = document.querySelectorAll('.team_member_divider');
     divider = Array.from(divider);
@@ -313,6 +306,4 @@ function contentLoaded() {
 
   }
 
-
-  
 }
