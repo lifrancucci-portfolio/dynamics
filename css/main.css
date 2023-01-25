@@ -11,11 +11,17 @@
   --clr-bg-sustainable-var2: rgb(184, 194, 152, .5);
 
   --clr-txt-body: #003d43;
+
   --clr-txt-digital-dark: #00475e;
+  --clr-hover-digital-dark: #003040;
   --clr-txt-digital-light: #006f84;
+  --clr-hover-digital-light: #014a58;
   --clr-txt-digital-lighter: #bcd5d5;
+
   --clr-txt-sustainable-dark: #3f836b;
+  --clr-hover-sustainable-dark: #346e5a;
   --clr-txt-sustainable-light: #b8c298;
+  --clr-hover-sustainable-light: #98a274;
 
   --margin-small: 1.5rem;
   --margin-medium: 3rem;
@@ -297,11 +303,28 @@ i {
   font-size: 1.2rem;
   font-size: 24px;
 }
-.slide .col__title {
+.col__title {
   text-transform: uppercase;
   font-weight: 600;
   font-size: 36px;
   margin-bottom: 1.5rem;
+}
+.col__title a,
+.title-section__title a {
+  display: inline-block;
+}
+.col__title a:hover,
+.title-section__title a:hover {
+  transform: scale(1.01);
+  transition: all .2s ease-in-out;
+}
+.col__title.clr_digital a:hover,
+.title-section__title.clr_digital a:hover {
+  color: var(--clr-hover-digital-light);
+}
+.col__title.clr_sustainable a:hover,
+.title-section__title.clr_sustainable a:hover {
+  color: var(--clr-hover-sustainable-light);
 }
 .col__title.text-enter {
   opacity: 0;
