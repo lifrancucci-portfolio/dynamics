@@ -645,7 +645,10 @@ i {
 /* ************* MEDIA QUERIES ************* */
 /* Phone Only */
 @media screen and (max-width: 600px) {
-
+  .page_logo {
+    width: 340px;
+    margin-left: -170px;
+  }
   .page_iso {
     right: 1rem;
     left: auto;
@@ -706,7 +709,7 @@ i {
     width: 95%;
     padding: 1rem .5rem;
   }
-  .slide_3, .slide_4 {
+  .slide_3, .slide_4, .slide_5 {
     width: 90%;
     padding: 1rem .5rem;
     margin: 0 .5rem;
@@ -714,5 +717,31 @@ i {
   }
   .title-section__title {
     line-height: 1.2;
+  }
+  .team {
+    padding: 1rem;
+  }
+  .team_member {
+    flex-direction: column;
+  }
+  .team_member .col {
+    width: 100%;
+  }
+  .col--text {
+    justify-content: flex-start;
+  }
+  .col--text p {
+    width: 100%;
+    font-size: 19px;
+    text-align: left;
+  }
+  .col--profile {
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  .col--profile img {
+    /* width: 50%; */
+    margin-bottom: 1.5rem;
+    margin-right: 0;
   }
 }

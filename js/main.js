@@ -122,7 +122,6 @@ function contentLoaded() {
   /***************** TEAM *****************/
   if( container.id == 'team' ) 
   {
-
     /* 
     // TEAM DIVIDER
     // Create container of n width
@@ -187,7 +186,6 @@ function contentLoaded() {
 
     });
     */
-
   }
   /*********** DIGITAL/SUSTAINABLE ***********/
   else if(container.id == 'workareas') 
