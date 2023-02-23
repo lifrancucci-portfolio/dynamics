@@ -629,7 +629,6 @@ i {
 }
 .col--text {
   display: flex;
-  justify-content: flex-end;
 }
 .col--text p {
   width: 80%;
@@ -639,6 +638,7 @@ i {
   letter-spacing: 1pt;
   text-align: justify;
   text-justify: inter-word;
+  padding-left: 3rem;
 }
 .team_member__break {
   width: 100%;
