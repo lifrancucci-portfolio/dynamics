@@ -71,7 +71,7 @@ i {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 75px;
+  height: 90px;
   z-index: 99;
 }
 .site-title {
@@ -411,7 +411,6 @@ i {
   margin-right: 1rem;
   margin-bottom: 1rem;
 }
-
 /* WORK AREAS */
 .background {
   position: absolute;
@@ -428,7 +427,7 @@ i {
   padding: 0 var(--margin-large);
 }
 .section-nav {
-  margin-top: 100px;
+  padding-top: 100px;
   text-transform: uppercase;
 }
 .other-section {
