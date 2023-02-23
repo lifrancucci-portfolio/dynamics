@@ -162,11 +162,11 @@ i {
 .menu__link {
   margin-bottom: 1.5rem;
 }
+.menu__link:first-child {
+  margin-top: 1rem;
+}
 .menu__link:last-child {
   margin-bottom: 0;
-}
-.link_home {
-  display: none;
 }
 .menu__display_closed {
   display: flex;
@@ -222,12 +222,14 @@ i {
   }
 }
 .slide {
-  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 .slide_1 {
   text-align: center;
   line-height: 1.5;
-  margin-top: 200px;
 }
 .slide_1 > p:nth-child(1),
 .slide_1 > p:nth-child(3) {
@@ -673,9 +675,75 @@ i {
   }
 }
 
+
+
+
+
+
+
+
+
+
 /* ************* MEDIA QUERIES ************* */
+/* Large Monitor Up */
+@media screen and (min-width: 1800px) {
+  /* WORK AREAS */
+  .workareas {
+    padding-top: 100px;
+  }
+  .workareas .body-container,
+  .workareas .section-nav {
+    padding: 0 200px;
+  }
+  .background {
+    width: 100%;
+    margin: 0;
+  }
+  .body-text > p,
+  .references {
+    max-width: 1200px;
+  }
+}
+/* Medium Monitor Down */
+@media screen and (max-width: 1200px) {
+  
+}
+/* Tablet Landscape Down */
+@media screen and (max-width: 900px) {
+  /* TEAM */
+  .team {
+    padding: 3rem;
+  }
+  .team_member {
+    flex-direction: column;
+  }
+  .team_member .col {
+    width: 100%;
+  }
+  .team_member__role {
+    padding-top: 0;
+  }
+  .col--text {
+    justify-content: flex-start;
+  }
+  .col--text p {
+    width: 100%;
+    font-size: 24px;
+    text-align: left;
+    padding-left: 0;
+  }
+  .col--profile {
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  .col--profile img {
+    width: 300px;
+    margin-bottom: 1.5rem;
+    margin-right: 0;
+  }
+}
 /* Phone Only */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 599px) {
   .page_logo {
     width: 340px;
     margin-left: -170px;
@@ -779,6 +847,7 @@ i {
     width: 100%;
     font-size: 19px;
     text-align: left;
+    padding-left: 0;
   }
   .col--profile {
     flex-direction: column;
@@ -790,6 +859,9 @@ i {
     margin-right: 0;
   }
   /* WORK AREAS */
+  .workareas {
+    padding-top: 100px;
+  }
   .section-nav {
     padding: 0 1rem;
   }
@@ -821,3 +893,5 @@ i {
     margin-bottom: 1rem;
   }
 }
+
+

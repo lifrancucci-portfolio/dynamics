@@ -198,23 +198,18 @@ function contentLoaded() {
           headerIso.src = './img/logos/iso-header-09.gif';
           break;
       }
-
       // Call the function on each element to select the section with the correct ID 
       sectionBody.forEach(section => sectionDisplay(section, sectionId));
-
       });
     });
 
     // Display the correct section
     function sectionDisplay(targetSection, targetId) {
-
       // Create variable to store section's color scheme
       let clrScheme = '';
-
       // If the section's ID is the requested, display it
       if(targetSection.id == targetId) {
         targetSection.classList.add('current');
-
         // Store color scheme of the section
         if(targetSection.classList.contains('clr_scheme_1')) {
           clrScheme = 'clr_scheme_1';
