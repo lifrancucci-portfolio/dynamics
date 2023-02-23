@@ -86,7 +86,7 @@ i {
   width: 400px;
   left: 50%;
   margin-left: -190px;
-  transform: translateY(240px);
+  transform: translateY(250px);
   opacity: 1;
   animation: dissolve-logo-text .8s ease-in 1.5s normal forwards;
   z-index: 1;
@@ -94,10 +94,10 @@ i {
 }
 @keyframes dissolve-logo-text {
   75% {
-    transform: translateY(0px);
+    transform: translateY(5px);
   }
   100% {
-    transform: translateY(0px);
+    transform: translateY(5px);
     opacity: 0;
   }
 }
@@ -110,7 +110,7 @@ i {
   z-index: 0;
 }
 .page_iso.static {
-  margin-top: -1rem;
+  /* margin-top: -1rem; */
 }
 .page_iso.animated {
   transform: translateY(240px);
@@ -562,7 +562,6 @@ i {
   font-weight: 600;
   font-style: italic;
 }
-
 /* OUR TEAM */
 .team {
   align-items: center;
@@ -634,7 +633,7 @@ i {
 }
 .col--text p {
   width: 80%;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 20pt;
   letter-spacing: 1pt;
