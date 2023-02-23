@@ -119,74 +119,7 @@ function contentLoaded() {
       rootMargin: '-100px'
     });
   }
-  /***************** TEAM *****************/
-  if( container.id == 'team' ) 
-  {
-    /* 
-    // TEAM DIVIDER
-    // Create container of n width
-    let divider = document.querySelectorAll('.team_member_divider');
-    divider = Array.from(divider);
-    console.log(divider);
 
-    // For each divider on the page, fill it with '/' elements as long as they don't exceed the div's width
-    divider.forEach(el => {
-
-      // Create a div to place inside the container and fill it with <span>/</span>
-      let dividerFilledContent = document.createElement('div');
-      let contentFill = '<span>/</span>';
-      dividerFilledContent.innerHTML = contentFill;
-
-      // Get div's width:
-      let divWidth = el.offsetWidth;
-      // Put filled content inside div:
-      el.appendChild(dividerFilledContent);
-      // Get filled content's width
-      let filledContentWidth = dividerFilledContent.offsetWidth;
-      
-      // As long as the filled content is smaller than the container:
-      for( let i = filledContentWidth; i < divWidth; i = filledContentWidth ) 
-      {
-        // Add a new <span>/</span> element to the filled content
-        dividerFilledContent.innerHTML = dividerFilledContent.innerHTML + contentFill;
-        // Update variable
-        filledContentWidth = dividerFilledContent.offsetWidth;
-      }
-
-      // DIVIDER ANIMATION
-      // Create an Array from the contents of the div, then cicle through them adding and removing animation classes
-      let divAnimatedContent = Array.from(dividerFilledContent.children);
-      // console.log(divAnimatedContent);
-
-      // Set 2 indices and 2 endpoints for looping: 
-      //  i = from begining of array 
-      //  j = from the middle 
-      //  iEndPoint = middle of the array - 1;
-      //  jEndPoint = end of the array;
-
-      let i = 0;
-      let j = parseInt(divAnimatedContent.length / 2);
-      let iEndPoint = parseInt((divAnimatedContent.length / 2) - 1);
-      let jEndPoint = parseInt(divAnimatedContent / 2);
-
-      function animateDivider(index, endpoint) {
-
-        setTimeout(function() {
-          divAnimatedContent[index].classList.add('bolden');
-          index++;
-          if(index < endpoint) {
-            animateDivider(index, endpoint);
-          }
-
-        }, 50);
-
-      }
-      animateDivider(i, iEndPoint);
-      animateDivider(j, divAnimatedContent.length);
-
-    });
-    */
-  }
   /*********** DIGITAL/SUSTAINABLE ***********/
   else if(container.id == 'workareas') 
   {
@@ -194,6 +127,8 @@ function contentLoaded() {
     // Nav links
     let navList = document.querySelectorAll('.nav-link');
     navList = Array.from(navList);
+    // Header gif
+    let headerIso = document.getElementById('page-iso')
     // Current title
     let currentTitle = document.getElementById('current-title');
     // Section body
@@ -223,34 +158,44 @@ function contentLoaded() {
         // Section: DIGITAL
         case 'link-platforms':
           sectionId = 'platforms';
+          headerIso.src = './img/logos/iso-header-01.gif';
           break;
         case 'link-telecom':
           sectionId = 'telecom';
+          headerIso.src = './img/logos/iso-header-02.gif';
           break;
         case 'link-media':
           sectionId = 'media';
+          headerIso.src = './img/logos/iso-header-03.gif';
           break;
         case 'link-web3':
           sectionId = 'web3';
+          headerIso.src = './img/logos/iso-header-04.gif';
           break;
         case 'link-regulations':
           sectionId = 'regulations';
+          headerIso.src = './img/logos/iso-header-05.gif';
           break;
         // Section: SUSTAINABLE
         case 'link-transition':
           sectionId = 'transition';
+          headerIso.src = './img/logos/iso-header-01.gif';
           break;
         case 'link-agroindustries':
           sectionId = 'agroindustries';
+          headerIso.src = './img/logos/iso-header-06.gif';
           break;
         case 'link-ambient-regulations':
           sectionId = 'ambient-regulations';
+          headerIso.src = './img/logos/iso-header-07.gif';
           break;
         case 'link-integrity':
           sectionId = 'integrity';
+          headerIso.src = './img/logos/iso-header-08.gif';
           break;
         case 'link-sustainability':
           sectionId = 'sustainability';
+          headerIso.src = './img/logos/iso-header-09.gif';
           break;
       }
 
