@@ -580,7 +580,6 @@ i {
 .section_title.animate {
   opacity: 0;
   transform: 
-            /* skew(-10deg) */
             translateX(35px);
   animation: text-slide .2s ease-in forwards;
 }
@@ -588,7 +587,6 @@ i {
 100% {
   opacity: 1;
   transform: 
-      /* skew(0) */
       translateX(0);
   }
 }
@@ -608,9 +606,6 @@ i {
   margin-right: 1rem;
   margin-bottom: 5rem;
 }
-.col--profile__info > * {
-  padding-top: 1rem;
-}
 .team_member__name {
   font-size: 24px;
   font-weight: bold;
@@ -618,6 +613,7 @@ i {
   line-height: 1.5;
 }
 .team_member__role {
+  padding-top: .5rem;
   font-size: 19px;
   font-style: italic;
   line-height: 1.5;
@@ -626,7 +622,14 @@ i {
   font-size: 24px;
 }
 .team_member__social i {
+  padding-top: 1rem;
   padding-right: 1rem;
+  opacity: .7;
+  transition: opacity .2s ease-in;
+}
+.team_member__social i:hover {
+  opacity: 1;
+  transition: opacity .2s ease-out;
 }
 .col--text {
   display: flex;
@@ -687,21 +690,36 @@ i {
 /* ************* MEDIA QUERIES ************* */
 /* Large Monitor Up */
 @media screen and (min-width: 1800px) {
-  /* WORK AREAS */
+  .slide_2, 
+  .team {
+    padding: 0 300px;
+  }
+  .col--profile img {
+    margin-right: 3rem;
+  }
+  .col--text p {
+    width: 100%;
+    padding-left: 3rem;
+  }
   .workareas {
     padding-top: 100px;
   }
-  .workareas .body-container,
-  .workareas .section-nav {
-    padding: 0 200px;
+  .workareas .section-nav,
+  .workareas .body-text p {
+    padding-left: calc(300px + 3rem);
+    padding-right: 0;
+  }
+  .body-text > p,
+  .references {
+    max-width: 1300px;
+  }
+  .p-divider {
+    width: 1000px;
+    margin-left: calc(300px + 3rem);
   }
   .background {
     width: 100%;
     margin: 0;
-  }
-  .body-text > p,
-  .references {
-    max-width: 1200px;
   }
 }
 /* Medium Monitor Down */
