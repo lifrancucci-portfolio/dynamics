@@ -158,44 +158,44 @@ function contentLoaded() {
         // Section: DIGITAL
         case 'link-platforms':
           sectionId = 'platforms';
-          headerIso.src = './img/logos/iso-header-01.gif';
+          headerIso.src = './gifs/iso-header-01.gif';
           break;
         case 'link-telecom':
           sectionId = 'telecom';
-          headerIso.src = './img/logos/iso-header-02.gif';
+          headerIso.src = './gifs/iso-header-02.gif';
           break;
         case 'link-media':
           sectionId = 'media';
-          headerIso.src = './img/logos/iso-header-03.gif';
+          headerIso.src = './gifs/iso-header-03.gif';
           break;
         case 'link-web3':
           sectionId = 'web3';
-          headerIso.src = './img/logos/iso-header-04.gif';
+          headerIso.src = './gifs/iso-header-04.gif';
           break;
         case 'link-regulations':
           sectionId = 'regulations';
-          headerIso.src = './img/logos/iso-header-05.gif';
+          headerIso.src = './gifs/iso-header-05.gif';
           break;
         // Section: SUSTAINABLE
         case 'link-transition':
           sectionId = 'transition';
-          headerIso.src = './img/logos/iso-header-01.gif';
+          headerIso.src = './gifs/iso-header-01.gif';
           break;
         case 'link-agroindustries':
           sectionId = 'agroindustries';
-          headerIso.src = './img/logos/iso-header-06.gif';
+          headerIso.src = './gifs/iso-header-02.gif';
           break;
         case 'link-ambient-regulations':
           sectionId = 'ambient-regulations';
-          headerIso.src = './img/logos/iso-header-07.gif';
+          headerIso.src = './gifs/iso-header-03.gif';
           break;
         case 'link-integrity':
           sectionId = 'integrity';
-          headerIso.src = './img/logos/iso-header-08.gif';
+          headerIso.src = './gifs/iso-header-04.gif';
           break;
         case 'link-sustainability':
           sectionId = 'sustainability';
-          headerIso.src = './img/logos/iso-header-09.gif';
+          headerIso.src = './gifs/iso-header-05.gif';
           break;
       }
       // Call the function on each element to select the section with the correct ID 
