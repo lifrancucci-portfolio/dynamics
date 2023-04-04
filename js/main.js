@@ -3,11 +3,142 @@ function contentLoaded() {
   window.scrollTo(0,0);
 
   /************** GENERAL **************/
+  // Get the main container
   const container = document.querySelector('.page-container');
+  // Get menu's translatable elements
+  const translatableElements = document.querySelectorAll('.translatable_element');
+  // Store site's base URL
+  const baseURL = 'http://127.0.0.1:4000/dynamics/';
+  // Create a list of all the pages with en/es versions
+  const sitePages = 
+  [
+    {esVersion: baseURL + '',  enVersion: baseURL + 'en/'},
+    {esVersion: baseURL + 'equipo/',  enVersion: baseURL + 'en/team/'},
+    {esVersion: baseURL + 'digital/',  enVersion: baseURL + 'en/digital/'},
+    {esVersion: baseURL + 'sostenible/',  enVersion: baseURL + 'en/sustainable/'},
+  ]
+
+  // Only show the menu items in the corresponding language
+  switch(container.lang) {
+    case 'es':
+      showMenuItems('es');
+      break;
+    case 'en':
+      showMenuItems('en');
+      break;
+    default:
+      showMenuItems('en');
+  }
+  function showMenuItems(selectedLang) {
+    translatableElements.forEach(element => {
+      if(element.lang == selectedLang) {
+        element.style.display = 'block';
+      } else {
+        element.style.display = 'none';
+      }
+    })
+  }
+
+  // Get the language selector and it's children elements
+  const langSelector = document.querySelector('.lang-selector');
+  const langList = Array.from(langSelector.children);
+  // Show the currently active language
+  switch(container.lang) {
+    case 'es':
+      langList.forEach(lang => {
+        if(lang.classList.contains('select--es')) {
+          lang.style.fontWeight = 'bold';
+        } else {
+          lang.style.fontWeight = 'lighter';
+        }
+      })
+      break;
+    case 'en':
+      langList.forEach(lang => {
+        if(lang.classList.contains('select--en')) {
+          lang.style.fontWeight = 'bold';
+        } else {
+          lang.style.fontWeight = 'lighter';
+        }
+      })
+      break;
+  }
+
+  // If user selects a language, store their choice
+  let selectedLang; // Variable to store the selected lang
+  langList.forEach(item => {
+    item.addEventListener('click', () => {
+      let itemLang = item.classList[0];
+      switch(itemLang) {
+        case 'select--es':
+          localStorage.setItem('lang', 'es');
+          break;
+        case 'select--en':
+          localStorage.setItem('lang', 'en');
+          break;
+      }
+      selectedLang = localStorage.getItem('lang');
+      // Call translate function
+      changeSelectedLanguage();
+    })
+  })
+
+  // If there's no language stored in 'lang' item, use the navigator preferred language
+  if(!localStorage.getItem('lang')) {
+    localStorage.setItem('lang', navigator.language.split('-')[0]);
+  } 
+  // If there's no language set on the page, set it to a default
+  if(container.lang == '') {
+    container.lang = 'en';
+  }
+  // Set selected language to 'lang' item
+  selectedLang = localStorage.getItem('lang');
+  let selectedVersion;
+  switch(selectedLang) {
+    case 'es':
+      selectedVersion = 'esVersion';
+      break;
+    case 'en':
+      selectedVersion = 'enVersion'
+  }
+  // Call translate function
+  changeSelectedLanguage();
+
+  // TRANSLATE SITE
+  function changeSelectedLanguage() {
+    // Show the current selected lang
+
+
+    // Get the current url 
+    let currentLocation = location.href;
+    let nextLocation;
+    
+    // Check if site language matches selected language
+    if(selectedLang != container.lang) {
+     // If it doesn't, get the current page and change to the corresponding version
+      if(container.lang == 'es') {
+        sitePages.forEach(page => {
+          if(currentLocation == page.esVersion) {
+            nextLocation = currentLocation.replace(page.esVersion, page.enVersion);
+          }
+        })
+      }
+      if(container.lang == 'en') {
+        sitePages.forEach(page => {
+          if(currentLocation == page.enVersion) {
+            nextLocation = currentLocation.replace(page.enVersion, page.esVersion);
+          }
+        })
+      }
+      // Go to the next location
+      location.href = nextLocation;
+    }
+  }
+  /* ************************************************* */
+
   const pageLogo = document.querySelector('.page_logo');
 
   // INTRO MENU
-  // const menuArrow = document.querySelector('.menu__display-arrow');
   const menuList = document.querySelector('.menu__list');
   const menuDots = document.querySelector('.menu__display_closed');
 
@@ -56,16 +187,16 @@ function contentLoaded() {
     const pageIso = document.getElementById('page-iso');
     pageIso.classList.add('animated');
 
-    // On main page, animate menu arrow
+    // On main page, animate menu and lang selector
     const menu = document.querySelector('.menu');
     menu.classList.add('animated');
 
     const introAnim = [];
 
-    const textAnim1 = document.querySelector('#slide1 :nth-child(1)');
-    const textAnim2 = document.querySelector('#slide1 :nth-child(2)');
-    const textAnim3 = document.querySelector('#slide1 :nth-child(3)');
-    const textAnim4 = document.querySelector('#slide1 :nth-child(4)');
+    const textAnim1 = document.querySelector('#slide1 .anim-line-1');
+    const textAnim2 = document.querySelector('#slide1 .anim-line-2');
+    const textAnim3 = document.querySelector('#slide1 .anim-line-3');
+    const textAnim4 = document.querySelector('#slide1 .anim-line-4');
     const closingText = document.getElementById('closing-text');
 
     introAnim.push(textAnim1, textAnim2, textAnim3, textAnim4, closingText);
@@ -158,44 +289,44 @@ function contentLoaded() {
         // Section: DIGITAL
         case 'link-platforms':
           sectionId = 'platforms';
-          headerIso.src = './gifs/iso-header-01.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-01.gif';
           break;
         case 'link-telecom':
           sectionId = 'telecom';
-          headerIso.src = './gifs/iso-header-02.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-02.gif';
           break;
         case 'link-media':
           sectionId = 'media';
-          headerIso.src = './gifs/iso-header-03.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-03.gif';
           break;
         case 'link-web3':
           sectionId = 'web3';
-          headerIso.src = './gifs/iso-header-04.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-04.gif';
           break;
         case 'link-regulations':
           sectionId = 'regulations';
-          headerIso.src = './gifs/iso-header-05.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-05.gif';
           break;
         // Section: SUSTAINABLE
         case 'link-transition':
           sectionId = 'transition';
-          headerIso.src = './gifs/iso-header-01.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-01.gif';
           break;
         case 'link-agroindustries':
           sectionId = 'agroindustries';
-          headerIso.src = './gifs/iso-header-02.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-02.gif';
           break;
         case 'link-ambient-regulations':
           sectionId = 'ambient-regulations';
-          headerIso.src = './gifs/iso-header-03.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-03.gif';
           break;
         case 'link-integrity':
           sectionId = 'integrity';
-          headerIso.src = './gifs/iso-header-04.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-04.gif';
           break;
         case 'link-sustainability':
           sectionId = 'sustainability';
-          headerIso.src = './gifs/iso-header-05.gif';
+          headerIso.src = baseURL + '/gifs/iso-header-05.gif';
           break;
       }
       // Call the function on each element to select the section with the correct ID 

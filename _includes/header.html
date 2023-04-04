@@ -1,9 +1,14 @@
 <header class="header">
+
+  <ul id="lang-selector" class="lang-selector">
+    <li class="select--es">es</li>/<li class="select--en">en</li>
+  </ul>
+
   <div class="logo">
     <h1 class="site-title">DYNAMICS</h1>
-    <img class="page_logo" src="./img/dynamics-text.png" alt="DYNAMICS brand logo">
-    <a href="./index.html">
-      <img id="page-iso" class="page_iso static" src="./gifs/iso-header-01.gif">
+    <img class="page_logo" src="{{ 'img/dynamics-text.png' | relative_url }}" alt="DYNAMICS brand logo">
+    <a href="{{ '/' | relative_url }}">
+      <img id="page-iso" class="page_iso static" src="{{ 'gifs/iso-header-01.gif' | relative_url }}">
     </a>
   </div>
 
@@ -15,14 +20,23 @@
     </div>
     
     <ul class="menu__list">
-      <li class="menu__link"><a href="{{ 'index.html' | relative_url }}">
+      <li class="menu__link translatable_element home" lang="es"><a href="{{ '/' | relative_url }}">
         inicio
       </a></li>
-      <li class="menu__link"><a href="{{ 'team.html' | relative_url }}">
+      <li class="menu__link translatable_element home" lang="en"><a href="{{ 'en/' | relative_url }}">
+        home
+      </a></li>
+      <li class="menu__link translatable_element" lang="es"><a href="{{ 'equipo' | relative_url }}">
         equipo
       </a></li>
-      <li class="menu__link"><a href="{{ 'digital.html' | relative_url }}">
+      <li class="menu__link translatable_element" lang="en"><a href="{{ 'en/team' | relative_url }}">
+        team
+      </a></li>
+      <li class="menu__link translatable_element" lang="es"><a href="{{ 'digital' | relative_url }}">
         áreas de trabajo
+      </a></li>
+      <li class="menu__link translatable_element" lang="en"><a href="{{ 'en/digital' | relative_url }}">
+        work areas
       </a></li>
       <li class="menu__link"><a href="https://dynamicmarkets.substack.com/" target="_blank">
         dynamic markets blog
