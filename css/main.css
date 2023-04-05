@@ -118,15 +118,18 @@ img {
   position: absolute;
 }
 .logo_section--iso {
-  width: 100px;
+  width: 70px;
   margin-top: 10px;
 }
 .logo_section--logo {
-  width: 416px;
+  width: 400px;
   margin-left: 20px;
-  opacity: 1;
+  opacity: 0;
   z-index: 1;
   pointer-events: none;
+}
+.logo_section--logo.animated {
+  opacity: 1;
   animation: logo-dissolve .8s ease-in 4s normal forwards;
 }
 @keyframes logo-dissolve {
@@ -831,14 +834,17 @@ img {
     100% {
       transform: 
         translateY(0)
-        translateX(calc(100% + var(--margin-small)));
+        translateX(calc(100% + var(--margin-medium)));
     }
   }
+  .logo_section.static {
+    transform: translateX(calc(100% + var(--margin-medium)));
+  }
   .logo_section--iso {
-    width: 70px;
+    width: 50px;
   }
   .logo_section--logo {
-    width: 300px;
+    width: 280px;
     animation: logo-dissolve .8s ease-in 1.8s normal forwards;
   }
   .lang_selector.animated {
@@ -872,6 +878,7 @@ img {
     text-align: right;
     padding: 3rem 1rem;
     margin-top: 3.5rem;
+    margin-right: -1.5rem;
   }
   .menu__link {
     font-size: 24px;

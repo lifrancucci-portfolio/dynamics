@@ -1,16 +1,24 @@
 function contentLoaded() {
-
+  /************** GENERAL **************/
+  // Force scroll to top of the page
   window.scrollTo(0,0);
 
-  /************** GENERAL **************/
   // Get the main container
   const container = document.querySelector('.page_container');
+
+  // Store site's base URL
+  const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/';
+
+  // Get header elements 
+  const logoSection = document.getElementById('logo_section');
+  const pageLogo = document.querySelector('.logo_section--logo');
+  const pageIso = document.querySelector('.logo_section--iso');
+  pageLogo.style.display = 'flex';
+  const menu = document.querySelector('.menu');
+
   // Get menu's translatable elements
   const translatableElements = document.querySelectorAll('.translatable_element');
-  // Store site's base URL
-  // const baseURL = 'http://127.0.0.1:4000/dynamics/';
-  const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/'
-  
+
   // Create a list of all the pages with en/es versions
   const sitePages = 
   [
@@ -78,6 +86,8 @@ function contentLoaded() {
         case 'select--en':
           localStorage.setItem('lang', 'en');
           break;
+        default: 
+
       }
       selectedLang = localStorage.getItem('lang');
       // Call translate function
@@ -108,9 +118,6 @@ function contentLoaded() {
 
   // TRANSLATE SITE
   function changeSelectedLanguage() {
-    // Show the current selected lang
-
-
     // Get the current url 
     let currentLocation = location.href;
     let nextLocation;
@@ -178,29 +185,31 @@ function contentLoaded() {
   /***************** INDEX *****************/
   if( container.id == 'main' ) 
   {
-    // Disable scroll until animation ends
-    disableScroll();
+    logoSection.classList.remove('static');
+    pageLogo.style.opacity = '1';
 
-    // On main page, animate logo and show 'DYNAMICS' text
-    const logoSection = document.getElementById('logo_section');
-    logoSection.classList.add('animated');
-    const pageLogo = document.querySelector('.logo_section--logo');
-    pageLogo.style.display='flex';
-    
-    // On main page, animate menu and lang selector
-    const menu = document.querySelector('.menu');
-    menu.classList.add('animated');
-    langSelector.classList.add('animated');
-
+    const slides = document.querySelector('.slides');
     const introAnim = [];
-
-    const textAnim1 = document.querySelector('#slide1 .anim-line-1');
-    const textAnim2 = document.querySelector('#slide1 .anim-line-2');
-    const textAnim3 = document.querySelector('#slide1 .anim-line-3');
-    const textAnim4 = document.querySelector('#slide1 .anim-line-4');
+    const textAnim1 = document.querySelector('#slide1 p:nth-child(1)');
+    const textAnim2 = document.querySelector('#slide1 p:nth-child(2)');
+    const textAnim3 = document.querySelector('#slide1 p:nth-child(3)');
+    const textAnim4 = document.querySelector('#slide1 p:nth-child(4)');
     const closingText = document.getElementById('closing-text');
-
     introAnim.push(textAnim1, textAnim2, textAnim3, textAnim4, closingText);
+
+    if(!localStorage.getItem('display-animation')) {
+      disableScroll();
+      logoSection.classList.add('animated');
+      menu.classList.add('animated');
+      langSelector.classList.add('animated');
+      localStorage.setItem('display-animation', true);
+    } 
+    else {
+      logoSection.classList.add('static');
+      pageLogo.style.display = 'none';
+      textAnim1.style.animationDelay = '0s';
+      slides.style.animationDelay = '0s';
+    }
     
     // When element ends animating, start next animation
     introAnim.forEach((item, index) => {
