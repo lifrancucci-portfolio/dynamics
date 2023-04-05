@@ -8,7 +8,9 @@ function contentLoaded() {
   // Get menu's translatable elements
   const translatableElements = document.querySelectorAll('.translatable_element');
   // Store site's base URL
-  const baseURL = 'http://127.0.0.1:4000/dynamics/';
+  // const baseURL = 'http://127.0.0.1:4000/dynamics/';
+  const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/'
+  
   // Create a list of all the pages with en/es versions
   const sitePages = 
   [
