@@ -828,11 +828,6 @@ img {
     animation: logo-move-up .3s ease-in 2.7s normal forwards;
   }
   @keyframes logo-move-up {
-    /* 90% {
-      transform: 
-        translateY(0)
-        scale(1);
-    } */
     100% {
       transform: 
         translateY(0)
@@ -871,7 +866,7 @@ img {
   }
   .menu__list {
     background-color: var(--clr-bg-light);
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     border: none;
     text-align: right;
