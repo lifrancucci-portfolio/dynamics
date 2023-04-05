@@ -7,7 +7,8 @@ function contentLoaded() {
   const container = document.querySelector('.page_container');
 
   // Store site's base URL
-  const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/';
+  // const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/';
+  const baseURL = 'http://127.0.0.1:4000/dynamics/';
 
   // Get header elements 
   const logoSection = document.getElementById('logo_section');
@@ -189,7 +190,8 @@ function contentLoaded() {
   if( container.id == 'main' ) 
   {
     logoSection.classList.remove('static');
-    pageLogo.style.opacity = '1';
+    pageLogo.classList.add('animated');
+    // pageLogo.style.opacity = '1';
 
     const slides = document.querySelector('.slides');
     const introAnim = [];
@@ -200,14 +202,16 @@ function contentLoaded() {
     const closingText = document.getElementById('closing-text');
     introAnim.push(textAnim1, textAnim2, textAnim3, textAnim4, closingText);
 
-    if(!localStorage.getItem('display-animation')) {
+    // If the intro animation has been shown, don't show again
+    if(!sessionStorage.getItem('display-animation')) {
       disableScroll();
       logoSection.classList.add('animated');
       menu.classList.add('animated');
       langSelector.classList.add('animated');
-      localStorage.setItem('display-animation', true);
+      sessionStorage.setItem('display-animation', true);
     } 
     else {
+      logoSection.classList.remove('static');
       logoSection.classList.add('static');
       pageLogo.style.display = 'none';
       textAnim1.style.animationDelay = '0s';
@@ -222,7 +226,6 @@ function contentLoaded() {
         }
         // Once the last animation plays, allow scrolling again
         if(index == introAnim.length -1) {
-          // container.classList.remove('prevent-scrolling');
           enableScroll();
         }
       })

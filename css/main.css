@@ -96,6 +96,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: scale(.7);
 }
 .logo_section.animated {
   transform-origin: center;
@@ -130,7 +131,7 @@ img {
 }
 .logo_section--logo.animated {
   opacity: 1;
-  animation: logo-dissolve .8s ease-in 4s normal forwards;
+  animation: logo-dissolve .8s ease-in 2.8s normal forwards;
 }
 @keyframes logo-dissolve {
   100% {
