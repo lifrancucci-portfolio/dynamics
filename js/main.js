@@ -7,8 +7,7 @@ function contentLoaded() {
   const container = document.querySelector('.page_container');
 
   // Store site's base URL
-  // const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/';
-  const baseURL = 'http://127.0.0.1:4000/dynamics/';
+  const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/';
 
   // Get header elements 
   const logoSection = document.getElementById('logo_section');
@@ -217,7 +216,7 @@ function contentLoaded() {
       textAnim1.style.animationDelay = '0s';
       slides.style.animationDelay = '0s';
     }
-    
+
     // When element ends animating, start next animation
     introAnim.forEach((item, index) => {
       item.addEventListener('animationend', () => {
