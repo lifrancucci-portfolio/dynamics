@@ -4,7 +4,7 @@ function contentLoaded() {
 
   /************** GENERAL **************/
   // Get the main container
-  const container = document.querySelector('.page-container');
+  const container = document.querySelector('.page_container');
   // Get menu's translatable elements
   const translatableElements = document.querySelectorAll('.translatable_element');
   // Store site's base URL
@@ -40,25 +40,25 @@ function contentLoaded() {
   }
 
   // Get the language selector and it's children elements
-  const langSelector = document.querySelector('.lang-selector');
+  const langSelector = document.querySelector('.lang_selector');
   const langList = Array.from(langSelector.children);
   // Show the currently active language
   switch(container.lang) {
     case 'es':
       langList.forEach(lang => {
         if(lang.classList.contains('select--es')) {
-          lang.style.fontWeight = 'bold';
+          lang.classList.add('selected');
         } else {
-          lang.style.fontWeight = 'lighter';
+          lang.classList.remove('selected');
         }
       })
       break;
     case 'en':
       langList.forEach(lang => {
         if(lang.classList.contains('select--en')) {
-          lang.style.fontWeight = 'bold';
+          lang.classList.add('selected');;
         } else {
-          lang.style.fontWeight = 'lighter';
+          lang.classList.remove('selected');;
         }
       })
       break;
@@ -135,9 +135,6 @@ function contentLoaded() {
     }
   }
   /* ************************************************* */
-
-  const pageLogo = document.querySelector('.page_logo');
-
   // INTRO MENU
   const menuList = document.querySelector('.menu__list');
   const menuDots = document.querySelector('.menu__display_closed');
@@ -182,14 +179,16 @@ function contentLoaded() {
     // Disable scroll until animation ends
     disableScroll();
 
-    pageLogo.style.display='block';
-    // On main page, animate page-iso and show page-logo
-    const pageIso = document.getElementById('page-iso');
-    pageIso.classList.add('animated');
-
+    // On main page, animate logo and show 'DYNAMICS' text
+    const logoSection = document.getElementById('logo_section');
+    logoSection.classList.add('animated');
+    const pageLogo = document.querySelector('.logo_section--logo');
+    pageLogo.style.display='flex';
+    
     // On main page, animate menu and lang selector
     const menu = document.querySelector('.menu');
     menu.classList.add('animated');
+    langSelector.classList.add('animated');
 
     const introAnim = [];
 
@@ -227,7 +226,7 @@ function contentLoaded() {
         addObserver(el, options);
       })
     }
-
+  
     // Create addObserver function 
     function addObserver(el, options) {
       // Create instance of IntersectionObserver
@@ -259,7 +258,7 @@ function contentLoaded() {
     let navList = document.querySelectorAll('.nav-link');
     navList = Array.from(navList);
     // Header gif
-    let headerIso = document.getElementById('page-iso')
+    let headerIso = document.getElementById('logo_section--iso');
     // Current title
     let currentTitle = document.getElementById('current-title');
     // Section body

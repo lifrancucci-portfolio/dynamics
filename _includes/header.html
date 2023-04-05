@@ -1,15 +1,21 @@
 <header class="header">
 
-  <ul id="lang-selector" class="lang-selector">
+  <ul id="lang_selector" class="lang_selector">
     <li class="select--es">es</li>/<li class="select--en">en</li>
   </ul>
 
-  <div class="logo">
-    <h1 class="site-title">DYNAMICS</h1>
-    <img class="page_logo" src="{{ 'img/dynamics-text.png' | relative_url }}" alt="DYNAMICS brand logo">
-    <a href="{{ '/' | relative_url }}">
-      <img id="page-iso" class="page_iso static" src="{{ 'gifs/iso-header-01.gif' | relative_url }}">
-    </a>
+  <div id="logo_section" class="logo_section">
+    <h1 class="site_title">DYNAMICS</h1>
+
+    <div class="logo_section--logo">
+      <img src="{{ 'img/dynamics-text.png' | relative_url }}" alt="DYNAMICS brand logo">
+    </div>
+
+    <div class="logo_section--iso static">
+      <a href="{{ '/' | relative_url }}">
+        <img src="{{ 'gifs/iso-header-01.gif' | relative_url }}">
+      </a>
+    </div>
   </div>
 
   <nav class="menu">
