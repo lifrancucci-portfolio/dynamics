@@ -86,8 +86,6 @@ function contentLoaded() {
         case 'select--en':
           localStorage.setItem('lang', 'en');
           break;
-        default: 
-
       }
       selectedLang = localStorage.getItem('lang');
       // Call translate function
@@ -97,10 +95,14 @@ function contentLoaded() {
 
   // If there's no language stored in 'lang' item, use the navigator preferred language
   if(!localStorage.getItem('lang')) {
-    localStorage.setItem('lang', navigator.language.split('-')[0]);
+    if(navigator.language.split('-')[0] != 'es') {
+      localStorage.setItem('lang', 'en');
+    } else {
+      localStorage.setItem('lang', 'es');
+    }
   } 
   // If there's no language set on the page, set it to a default
-  if(container.lang == '') {
+  if(container.lang != 'es') {
     container.lang = 'en';
   }
   // Set selected language to 'lang' item
@@ -111,7 +113,8 @@ function contentLoaded() {
       selectedVersion = 'esVersion';
       break;
     case 'en':
-      selectedVersion = 'enVersion'
+      selectedVersion = 'enVersion';
+      break;
   }
   // Call translate function
   changeSelectedLanguage();
