@@ -1,2 +1,17 @@
-url: lifrancucci-portfolio.github.io
-baseurl: /dynamics
+# url: lifrancucci-portfolio.github.io
+# baseurl: /dynamics
+
+url: 127.0.0.1:4000
+# baseurl: /dynamics
+
+# title: DYNAMICS
+# email: info@dynamics.la
+# description: >- 
+#   Dynamics es una consultora especializada en economía digital y sostenibilidad para América Latina.
+#   ---------------
+#   Dynamics is a consulting firm specializing in digital economy and sustainability in Latin America.
+
+# domain: dynamics.la
+# url: https://www.dynamics.la 
+# baseurl: "/" 
+# permalink: pretty

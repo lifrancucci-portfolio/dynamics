@@ -7,7 +7,9 @@ function contentLoaded() {
   const container = document.querySelector('.page_container');
 
   // Store site's base URL
-  const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/';
+  const baseURL = 'http://127.0.0.1:4000/';
+  // const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/';
+  // const baseURL = 'https://www.dynamics.la/';
 
   // Get header elements 
   const logoSection = document.getElementById('logo_section');
@@ -62,16 +64,16 @@ function contentLoaded() {
           lang.classList.remove('selected');
         }
       })
-      break;
+    break;
     case 'en':
       langList.forEach(lang => {
         if (lang.classList.contains('select--en')) {
-          lang.classList.add('selected');;
+          lang.classList.add('selected');
         } else {
-          lang.classList.remove('selected');;
+          lang.classList.remove('selected');
         }
       })
-      break;
+    break;
   }
 
   // If user selects a language, store their choice
@@ -387,7 +389,5 @@ function contentLoaded() {
         this.classList.add('selected');
       });
     }
-
   }
-
 }
