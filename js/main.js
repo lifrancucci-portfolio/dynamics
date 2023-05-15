@@ -7,9 +7,9 @@ function contentLoaded() {
   const container = document.querySelector('.page_container');
 
   // Store site's base URL
-  const baseURL = 'http://127.0.0.1:4000/';
-  // const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics/';
-  // const baseURL = 'https://www.dynamics.la/';
+  const baseURL = 'http://127.0.0.1:4000';
+  // const baseURL = 'https://lifrancucci-portfolio.github.io/dynamics';
+  // const baseURL = 'https://www.dynamics.la';
 
   // Get header elements 
   const logoSection = document.getElementById('logo_section');
@@ -18,114 +18,78 @@ function contentLoaded() {
   pageLogo.style.display = 'flex';
   const menu = document.querySelector('.menu');
 
-  // Get menu's translatable elements
-  const translatableElements = document.querySelectorAll('.translatable_element');
 
-  // Create a list of all the pages with en/es versions
-  const sitePages =
-    [
-      { esVersion: baseURL + '', enVersion: baseURL + 'en/' },
-      { esVersion: baseURL + 'equipo/', enVersion: baseURL + 'en/team/' },
-      { esVersion: baseURL + 'digital/', enVersion: baseURL + 'en/digital/' },
-      { esVersion: baseURL + 'sostenible/', enVersion: baseURL + 'en/sustainable/' },
-    ]
+  /* ****************** TRANSLATE ****************** */
+  // Get lang elements
+  const langSelector = document.querySelector('.lang_selector')
+  const langs = Array.from(langSelector.children)
+  let selectedLang = localStorage.getItem('lang')
 
-  // Only show the menu items in the corresponding language
-  switch (container.lang) {
-    case 'es':
-      showMenuItems('es');
-      break;
-    case 'en':
-      showMenuItems('en');
-      break;
-    default:
-      showMenuItems('en');
+  // Get navigator preferred lang
+  let navigatorLang = navigator.language.split('-')[0]
+  // If preferred language is not spanish, default to english
+  if(navigatorLang !== 'es') {
+    navigatorLang = 'en'
   }
-  function showMenuItems(selectedLang) {
-    translatableElements.forEach(element => {
-      if (element.lang == selectedLang) {
-        element.style.display = 'block';
-      } else {
-        element.style.display = 'none';
+
+  // On page load, if there's no selected language, use navigator preferred lang
+  if(!selectedLang) {
+    selectedLang = navigatorLang
+  }
+
+  // Add 'selected' class to corresponding menu item
+  if(selectedLang == 'es') {
+    langs.forEach(lang => {
+      if(lang.classList.contains('select--es')) {
+        lang.classList.add('selected')
+      }
+    })
+  } 
+  else if(selectedLang == 'en') {
+    langs.forEach(lang => {
+      if(lang.classList.contains('select--en')) {
+        lang.classList.add('selected')
       }
     })
   }
 
-  // Get the language selector and it's children elements
-  const langSelector = document.querySelector('.lang_selector');
-  const langList = Array.from(langSelector.children);
-  // Show the currently active language
-  switch (container.lang) {
-    case 'es':
-      langList.forEach(lang => {
-        if (lang.classList.contains('select--es')) {
-          lang.classList.add('selected');
-        } else {
-          lang.classList.remove('selected');
-        }
+  // If user selects a language, store it
+  langs.forEach(lang => {
+    lang.addEventListener('click', () => {
+      // Remove 'selected' class from all elements
+      langs.forEach(lang => {
+        lang.classList.remove('selected')
       })
-    break;
-    case 'en':
-      langList.forEach(lang => {
-        if (lang.classList.contains('select--en')) {
-          lang.classList.add('selected');
-        } else {
-          lang.classList.remove('selected');
-        }
-      })
-    break;
-  }
 
-  // If user selects a language, store their choice
-  let selectedLang; // Variable to store the selected lang
-  langList.forEach(item => {
-    item.addEventListener('click', () => {
-      let itemLang = item.classList[0];
-      switch (itemLang) {
-        case 'select--es':
-          localStorage.setItem('lang', 'es');
-          break;
-        case 'select--en':
-          localStorage.setItem('lang', 'en');
-          break;
+      // Change selected language and add 'selected' class
+      if(lang.classList.contains('select--es')) {
+        selectedLang = 'es'
+        localStorage.setItem('lang', 'es')
       }
-      selectedLang = localStorage.getItem('lang');
-      // Call translate function
-      changeSelectedLanguage();
+      else if(lang.classList.contains('select--en')) {
+        selectedLang = 'en'
+        localStorage.setItem('lang', 'en')
+      }
+      lang.classList.add('selected')
+      changeSiteVersion()
     })
   })
 
-  // If there's no language stored in 'lang' item, use the navigator preferred language
-  if (!localStorage.getItem('lang')) {
-    if (navigator.language.split('-')[0] != 'es') {
-      localStorage.setItem('lang', 'en');
-    } else {
-      localStorage.setItem('lang', 'es');
-    }
-  }
-  // If there's no language set on the page, set it to a default
-  if (container.lang != 'es') {
-    container.lang = 'en';
-  }
-  // Set selected language to 'lang' item
-  selectedLang = localStorage.getItem('lang');
-  let selectedVersion;
-  switch (selectedLang) {
-    case 'es':
-      selectedVersion = 'esVersion';
-      break;
-    case 'en':
-      selectedVersion = 'enVersion';
-      break;
-  }
-  // Call translate function
-  changeSelectedLanguage();
+  // Show site according to lang preference
+  // Create a list of all the pages with en/es versions
+  const sitePages =
+  [
+    { esVersion: baseURL + '/', enVersion: baseURL + '/en/' },
+    { esVersion: baseURL + '/equipo/', enVersion: baseURL + '/en/team/' },
+    { esVersion: baseURL + '/digital/', enVersion: baseURL + '/en/digital/' },
+    { esVersion: baseURL + '/sostenible/', enVersion: baseURL + '/en/sustainable/' },
+  ]
 
   // TRANSLATE SITE
-  function changeSelectedLanguage() {
+  function changeSiteVersion() {
     // Get the current url 
-    let currentLocation = location.href;
-    let nextLocation;
+    let currentLocation = location.href
+    let nextLocation
 
     // Check if site language matches selected language
     if (selectedLang != container.lang) {
@@ -133,22 +97,26 @@ function contentLoaded() {
       if (container.lang == 'es') {
         sitePages.forEach(page => {
           if (currentLocation == page.esVersion) {
-            nextLocation = currentLocation.replace(page.esVersion, page.enVersion);
+            nextLocation = currentLocation.replace(page.esVersion, page.enVersion)
           }
         })
       }
       if (container.lang == 'en') {
         sitePages.forEach(page => {
           if (currentLocation == page.enVersion) {
-            nextLocation = currentLocation.replace(page.enVersion, page.esVersion);
+            nextLocation = currentLocation.replace(page.enVersion, page.esVersion)
           }
         })
       }
       // Go to the next location
-      location.href = nextLocation;
+      console.log(`nextLocation = ${nextLocation}`)
+      location.href = nextLocation
     }
   }
-  /* ************************************************* */
+  changeSiteVersion()
+
+  /* *********************************************** */
+
   // INTRO MENU
   const menuList = document.querySelector('.menu__list');
   const menuDots = document.querySelector('.menu__display_closed');
@@ -203,30 +171,30 @@ function contentLoaded() {
     introAnim.push(textAnim1, textAnim2, textAnim3, textAnim4, closingText);
 
     // If the intro animation has been shown, don't show again
-    if (!sessionStorage.getItem('display-animation')) {
-      disableScroll();
-      logoSection.classList.add('animated');
-      menu.classList.add('animated');
-      langSelector.classList.add('animated');
-      sessionStorage.setItem('display-animation', true);
+    if (!localStorage.getItem('display-animation')) {
+      disableScroll()
+      logoSection.classList.add('animated')
+      menu.classList.add('animated')
+      langSelector.classList.add('animated')
+      localStorage.setItem('display-animation', true)
     }
     else {
-      logoSection.classList.remove('static');
-      logoSection.classList.add('static');
-      pageLogo.style.display = 'none';
-      textAnim1.style.animationDelay = '0s';
-      slides.style.animationDelay = '0s';
+      logoSection.classList.remove('static')
+      logoSection.classList.add('static')
+      pageLogo.style.display = 'none'
+      textAnim1.style.animationDelay = '0s'
+      slides.style.animationDelay = '0s'
     }
 
     // When element ends animating, start next animation
     introAnim.forEach((item, index) => {
       item.addEventListener('animationend', () => {
         if (index < introAnim.length - 1) {
-          introAnim[index + 1].classList.add('animate');
+          introAnim[index + 1].classList.add('animate')
         }
         // Once the last animation plays, allow scrolling again
         if (index == introAnim.length - 1) {
-          enableScroll();
+          enableScroll()
         }
       })
     });
@@ -235,12 +203,12 @@ function contentLoaded() {
     // Create scrollTrigger function
     function scrollTrigger(selector, options = {}) {
       // Select elements to apply trigger
-      let els = document.querySelectorAll(selector);
+      let els = document.querySelectorAll(selector)
       // Create array from elements
-      els = Array.from(els);
+      els = Array.from(els)
       // Add IntersectionObserver to elements
       els.forEach(el => {
-        addObserver(el, options);
+        addObserver(el, options)
       })
     }
 
